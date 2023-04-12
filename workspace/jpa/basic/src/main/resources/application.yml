@@ -5,8 +5,8 @@ server:
 #jdbc
 spring:
   datasource:
-    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
-    url: jdbc:p6spy:oracle:thin:@localhost:1521:XE
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:XE
     username: hr
     password: hr
 
@@ -14,12 +14,15 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.OracleDialect
     hibernate:
+
       #jpa ddl-auto
-      #create : DROP 후 CREATE
-      #create-drop : DROP 후 CREATE 후 DROP
-      #update : Entity와 DB 스키마 비교 후 수정 사항 반영(컬럼 삭제는 불가능)
-      #validate : Entity와 DB 스키마 비교(다르면 예외 발생)
+      #create: DROP 후 CREATE
+      #create-drop: DROP 후 CREATE 후 DROP, DML 을 사용하지 않는다면 DROP 안됨
+      #update: Entity와 DB 스키마 비교 후 수정 사항 반영(컬럼 추가)
+      #validate: Entity와 DB 스키마 비교(다르면 예외 발생)
       ddl-auto: create
+
+    show-sql: true
 
     #jpa format
     properties:
@@ -30,5 +33,4 @@ spring:
   output:
     ansi:
       enabled: always
-
 
