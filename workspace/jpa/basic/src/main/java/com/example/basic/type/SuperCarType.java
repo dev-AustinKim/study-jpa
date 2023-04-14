@@ -1,5 +1,5 @@
 package com.example.basic.type;
 
 public enum SuperCarType {
-    BUGATTI, BMW, FERRARI
+    FERRARI, LAMBORGHINI, BENTLEY, HYUNDAI
 }
