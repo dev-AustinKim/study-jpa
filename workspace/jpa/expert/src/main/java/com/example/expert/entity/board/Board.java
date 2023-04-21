@@ -1,4 +1,4 @@
-package com.example.expert.board;
+package com.example.expert.entity.board;
 
 import com.sun.istack.NotNull;
 import lombok.EqualsAndHashCode;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter @Setter @ToString
+@Getter @Setter @ToString(exclude = "likes")
 @Table(name = "TBL_BOARD")
 public class Board {
 //    id를 HashCode로 설정한다.
@@ -24,7 +24,8 @@ public class Board {
     @OneToMany(
                 fetch = FetchType.LAZY,
                 mappedBy = "board",
-                cascade = {CascadeType.REMOVE, CascadeType.PERSIST}
+                cascade = {CascadeType.REMOVE, CascadeType.PERSIST},
+                orphanRemoval = true //컬렉션으로 삭제된 객체들까지 전부 감지하도록 설정
             )
     private List<Like> likes = new ArrayList<>();
 
