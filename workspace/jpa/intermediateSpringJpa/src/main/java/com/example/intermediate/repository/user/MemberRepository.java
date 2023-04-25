@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
     @Modifying(clearAutomatically = true)
-    @Query("update Member m set m.address = '서울' where m.address = :address")
+    @Query("update Member m set m.address = '서울', m.updatedDate = current_timestamp where m.address = :address")
     public void updateAllByAddress(String address);
 }

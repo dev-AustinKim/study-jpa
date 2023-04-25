@@ -45,4 +45,32 @@ public class BusinessRepositoryTests {
         businessRepository.updateUserIdByAddress("경기도");
         businessRepository.findAll().stream().map(Business::toString).forEach(log::info);
     }
+
+    @Test
+    public void updateTest(){
+        businessRepository.findById(112L).ifPresent(business -> business.setPassword("8888"));
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

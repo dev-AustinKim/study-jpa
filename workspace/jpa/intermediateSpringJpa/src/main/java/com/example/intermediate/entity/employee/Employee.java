@@ -2,9 +2,7 @@ package com.example.intermediate.entity.employee;
 
 import com.example.intermediate.audit.Period;
 import com.sun.istack.NotNull;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -21,12 +19,20 @@ import java.time.LocalDate;
 @Getter @Setter @ToString
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) // 상속관계 시 부모엔티티에 작성하며, 기본 전략은 SINGLE_TABLE이다.
 @DiscriminatorColumn(name = "DEPARTMENT") // SINGLE_TABLE전략 시 구분(Discrimination)컬럼이 추가되며, 기본 컬럼명은 DTYPE이다.
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class Employee extends Period {
     @Id @GeneratedValue
+    @EqualsAndHashCode.Include
     private Long id;
     @NotNull private String name;
     private LocalDate birth;
     @NotNull private Integer career;
+
+    public Employee(String name, LocalDate birth, Integer career) {
+        this.name = name;
+        this.birth = birth;
+        this.career = career;
+    }
 }
 
 
