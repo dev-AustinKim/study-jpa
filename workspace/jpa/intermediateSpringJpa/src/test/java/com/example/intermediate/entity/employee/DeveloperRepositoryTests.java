@@ -43,6 +43,8 @@ public class DeveloperRepositoryTests {
         Page<Developer> developersWithPaging = developerRepository.findAll(pageRequest);
         developersWithPaging.getContent().stream().map(Developer::toString).forEach(log::info); // 전달한 페이지의 정보 전체
         log.info(String.valueOf(developersWithPaging.getTotalPages())); // 전체 페이지 개수(마지막 페이지 번호)
+//        만약 전체 게시글 정보가 한 페이지 안에 가져올 수 있을 때에는, List의 size()를 구한다.
+//        하지만 2페이지 이상부터 count 쿼리가 작성된다.
         log.info(String.valueOf(developersWithPaging.getTotalElements())); // 전체 정보 개수
         log.info(String.valueOf(developersWithPaging.getNumber())); // 현재 페이지 번호
         log.info(String.valueOf(developersWithPaging.getNumberOfElements())); // 페이지 당 나오는 정보의 개수
